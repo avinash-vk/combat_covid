@@ -117,6 +117,7 @@ class _TempLoginState extends State<TempLogin> {
         {
           prefs.setString("last-temp-log", DateTime.now().toString());
           _text = "SUCCESS, logged in";
+          prefs.setBool('TTIME', true);
           setState(() {
             isLoading = false;
           });

@@ -65,6 +65,7 @@ class _LocationRegState extends State<LocationReg>{
                 SharedPreferences prefs = await SharedPreferences.getInstance();
                 prefs.setString('home-lat',lat);
                 prefs.setString('home-long',long);
+                
                 setState(() {
                   output = "Location updated!";
                 });
@@ -75,8 +76,9 @@ class _LocationRegState extends State<LocationReg>{
             ),
           ),
           FloatingActionButton(onPressed: (){
-            Navigator.pushNamed(context, '/home-services');
-          },
+            if (output == "Location updated!" ){
+                          Navigator.pushNamed(context, '/home-services');
+          }},
             child: Icon(Icons.done,color: Colors.white,),
             backgroundColor: Colors.redAccent,
           )

@@ -153,6 +153,8 @@ class _FaceLoginState extends State<FaceLogin> {
                         if (j['isIdentical'] == true){
                             prefs.setString("last-face-log", DateTime.now().toString());
                             output = "Successfully logged!!";
+                            prefs.setBool('FTIME', true);
+        
                             String url = "https://combat-covid.azurewebsites.net/api/user_face";
                       Map<String,String> headers = {"Content-type" : "application/json", "Ocp-Apim-Subscription-Key":"4b823f3294a047fbac047b2dd7ed445e"};
                       Map js = {"phone_number":pno,"logged-in":true,"confidence-level":j['confidence'],"face-id":logFaceid};

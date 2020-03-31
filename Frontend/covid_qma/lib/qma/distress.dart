@@ -77,16 +77,13 @@ class _DistressState extends State<Distress> {
     
   String pno = (await SharedPreferences.getInstance()).getString('PhoneNumber');
   String now = DateTime.now().toString();
-  String url = "https://combat-covid-v1.herokuapp.com/api/add_new_distress_call";
+  String url = "https://combat-covid.azurewebsites.net/api/add_new_distress_call";
   Map<String,String> headers = {"Content-type" : "application/json"};
   Map js = {"phone_number":pno, "Date-time":now}; //ADD OTHER INFO
   var body = json.encode(js);
 
   try{
         var response = await http.post(url,headers:headers,body: body);
-        setState(() {
-          output = "loaded";
-        });
         int code = response.statusCode;
         print(code);
         print(response.body);

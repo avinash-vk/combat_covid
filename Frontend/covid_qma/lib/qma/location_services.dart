@@ -57,9 +57,9 @@ void callbackDispatcher() {
             isface = true;
         }}
         if (facetime == null) 
-          isface = true;
+          isface = false;
         if (temptime == null)
-          istemp = true;
+          istemp = false;
         prefs.setBool('FTIME', isface);
         prefs.setBool('TTIME', istemp);
         print("lat and long got:$lat and $long");

@@ -146,6 +146,7 @@ class _ContactPersonState extends State<ContactPerson> {
             Text(
                   output
                 ),
+              SizedBox(height: 300,),
               ],
               )
               ) 
@@ -161,16 +162,14 @@ class _ContactPersonState extends State<ContactPerson> {
   String name = nameController.text;
   String address = dobController.text;
   String now = DateTime.now().toString();
-  String url = "https://combat-covid-v1.herokuapp.com/api/add_close_contact";
+  String url = "https://combat-covid.azurewebsites.net/api/add_close_contact";
   Map<String,String> headers = {"Content-type" : "application/json"};
   Map js = {"phone_number":pno,"Date-time":now, "contact-pno":contactPno,"contact-name":name,"contact-address":address}; //ADD OTHER INFO
   var body = json.encode(js);
 
   try{
         var response = await http.post(url,headers:headers,body: body);
-        setState(() {
-          output = "loaded";
-        });
+        
         int code = response.statusCode;
         print(code);
         print(response.body);

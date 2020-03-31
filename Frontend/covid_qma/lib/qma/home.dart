@@ -8,40 +8,52 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {  
-  String temptext = 'You last logged your temperature at:';
-  String facetext = 'You last logged your face at:';
-  bool isface =  true;
-  bool istemp = true;
+
+  String temptext='lo';
+  String facetext='ko';
+  bool isface =  false;
+  bool istemp = false;
   String facetime = '';
   String temptime = '';
-  void fun() async
+  String temptex,facetex;
+  Future<void> fun() async
   {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String pno = prefs.getString('PhoneNumber');
     prefs.setBool('Logged-in_$pno', true);
-    facetime = prefs.getString("last-face-log");
-    temptime = prefs.getString("last-temp-log");
+    facetime = prefs.getString("last-face-log")!=null?prefs.getString("last-face-log").substring(0,19):"You haven't logged this yet.";
+    temptime = prefs.getString("last-temp-log")!=null?prefs.getString("last-temp-log").substring(0,19):"You haven't logged this yet.";;
+    isface = prefs.getBool('FTIME')!=null?prefs.getBool('FTIME'):false;
+    istemp = prefs.getBool('TTIME')!=null?prefs.getBool('TTIME'):false;
+    temptex  = 'You last logged your temperature at:';
+    facetex = 'You last logged your face at:';
+    print("$isface,$istemp");
+    if (isface == false)
+      if (facetime !="You haven't logged this yet." )
+        facetex = "Log your face ASAP.Last logged at:";
+      else
+        facetex = '';
 
-    isface = prefs.getBool('FTIME')!=null?prefs.getBool('FTIME'):true;
-    istemp = prefs.getBool('TTIME')!=null?prefs.getBool('TTIME'):true;
+    if (istemp == false)
+      if (temptime !="You haven't logged this yet." )
+        temptex = "Log your temperature ASAP.Last logged at:";
+      else  
+        temptex = '';
     setState(() {
       isface = isface;
       istemp = istemp;
-    });
-    if (isface == false)
-        facetext = "Log your face ASAP.Last logged at:";
-    if (istemp == false)
-        temptext = "Log your temperature ASAP.Last logged at:";
-    setState(() {
-      facetext = "$facetext $temptime";
-      temptext = "$temptext $facetime";
+      facetext = "$facetex $facetime";
+      temptext = "$temptex $temptime";
     });
   }
+
   @override
   void initState(){
     fun();
-      super.initState();
+    super.initState();
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +110,12 @@ class _HomeState extends State<Home> {
         ),
       ),
 
-      body: Padding(
+      body: 
+      RefreshIndicator(
+        onRefresh: fun,
+        child: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        child:Padding(
           padding: const EdgeInsets.fromLTRB(30, 40, 40, 40),
           child: Column(children: <Widget>[
             Text(
@@ -107,6 +124,10 @@ class _HomeState extends State<Home> {
                 color: Colors.grey,
                 letterSpacing: 2.0,
               ),
+            ),
+            Icon(
+            (isface==(false))?Icons.backspace:Icons.check_circle,
+            color:(isface!=(false)? Colors.green:Colors.red)
             ),
             SizedBox(height: 10),
             RaisedButton(onPressed: (){
@@ -129,6 +150,10 @@ class _HomeState extends State<Home> {
                 color: Colors.grey,
                 letterSpacing: 2.0,
               ),
+            ),
+            Icon(
+            (istemp==(false))?Icons.backspace:Icons.check_circle,
+            color:(istemp!=(false)? Colors.green:Colors.red)
             ),
             SizedBox(height: 10),
             RaisedButton(onPressed: (){
@@ -168,7 +193,8 @@ class _HomeState extends State<Home> {
             ),
           ],)  
       ),
-      
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           Navigator.pushNamed(context, '/distress');

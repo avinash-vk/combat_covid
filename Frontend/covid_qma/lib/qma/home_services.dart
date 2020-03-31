@@ -27,8 +27,10 @@ class _HomeLoadingState extends State<HomeLoading> {
     String now = DateTime.now().toString();
     String lat = prefs.getString('home-lat');
     String long = prefs.getString('home-long');
-    prefs.setString('lastFaceLog', null);
-    prefs.setString('lastTempLog', null);
+    prefs.setString('last-face-log', null);
+    prefs.setString('last-temp-log', null);
+    prefs.setBool('FTIME', null);
+    prefs.setBool('TTIME', null);
     String url = "https://combat-covid.azurewebsites.net/api/add_new_user_data_qma";
     Map<String,String> headers = {"Content-Type":"application/json"};
     Map js = {"phone_number":"$pno","home-location":"$lat,$long","face-id":"$faceid","date-time":"$now"};

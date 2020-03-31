@@ -12,10 +12,9 @@ class RegisterFace extends StatefulWidget {
 }
 
 class _RegisterFaceState extends State<RegisterFace> {
-  String output = "HI";
+  String output = "LET'S Click your picture :)";
   File _image;
   String faceId= '';
-  static const String IMG_KEY = 'USER_PIC';
   
   Future getImage(ImageSource src) async {
       var image = await ImagePicker.pickImage(source: src);
@@ -123,7 +122,7 @@ class _RegisterFaceState extends State<RegisterFace> {
                     );
                     if ((code < 300))
                     {
-                      output = "SUCCESS, picture logged";
+                      output = "Yay! Success. picture logged!";
                       SharedPreferences prefs = await SharedPreferences.getInstance();
                       var pno = prefs.getString('PhoneNumber');
                       await FaceUtility.saveImageToPreferences(FaceUtility.base64String(_image.readAsBytesSync()),"USER_PIC_$pno");
@@ -161,7 +160,8 @@ class _RegisterFaceState extends State<RegisterFace> {
         ],),
       floatingActionButton:FloatingActionButton(
         onPressed: (){
-          Navigator.pushNamed(context, '/reg-location');
+          if (output == "Yay! Success. picture logged!" )
+            Navigator.pushNamed(context, '/reg-location');
           },
         child: Icon(Icons.done,color: Colors.white,),
         backgroundColor: Colors.redAccent,
