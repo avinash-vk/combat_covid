@@ -28,6 +28,9 @@ If a citizen is feeling symptoms or has come in contact with a positive tested p
 * The QMA, EMA and CMA android applications can be downloaded from the APK folder  
 * The EMA online dashboard can be viewed at https://combat-covid.azurewebsites.net/ 
 
+#Download the apks from 
+* https://drive.google.com/drive/folders/1_AqTr-dZFQWj-Ocaym2lKFBsBWjUDeKb?usp=sharing
+
 ## The filesystem:
 * The folder *Frontend* contains all the code related to the mobile applications. They are written using Flutter.  
 * The folders *templates* and *static* contain all code related to the EMA online dashboard.  The use HTML, CSS and JavaScript.  
