@@ -22,6 +22,11 @@ mongo = pymongo.MongoClient('mongodb+srv://srujandeshpande:mongodb@cluster0-e0fe
 db = pymongo.database.Database(mongo, 'covid_v1')
 
 
+@app.route('/tests/build_test')
+def build_test():
+	return "Passed"
+
+
 #Create Userpage
 @app.route('/user/<phone_number>')
 def user_page(phone_number):
@@ -1155,8 +1160,8 @@ def add_new_user_qma():
 		pass
 	User_Alert_Data.insert_one({'phone_number':inputData['phone_number'],'app':inputData['date_time_quarantined']})
 	pswdstring = "abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ123456789"
-	pswd = ''.join(random.choice(pswdstring) for i in range(8))
-	#pswd = "abcd1234" #temporary for now
+	#pswd = ''.join(random.choice(pswdstring) for i in range(8))
+	pswd = "abcd1234" #temporary for now
 	inputData['password'] = pswd
 	objid = User_Data.insert_one(inputData).inserted_id
 	return ({'success':True, 'userobjid':str(objid), 'password':pswd})
@@ -1180,7 +1185,11 @@ def add_new_user_data():
 			break
 	if not flagv:
 		return ({'success':False, 'error':"Invalid User"})
-	User_Base_Data.insert_one(inputData)
+	baseData = json.loads(dumps(User_Base_Data.find({'phone_number':inputData['phone_number']})))
+	if (baseData == []):
+		User_Base_Data.insert_one(inputData)
+	else:
+		User_Base_Data.update_one({'phone_number':inputData['phone_number']},{"$set":inputData})
 	User_Alert_Data.update_one({'phone_number':inputData['phone_number']},{"$set":{'app':""}})
 	return ({'success':True})
 

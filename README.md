@@ -1,9 +1,10 @@
 # combat_covid
 Combat Covid, A complete Quarantine, Effort and Citizen management system  
-The Combat Covid Application - **https://combat-covid.azurewebsites.net/**     
+The Combat Covid Application - **http://combatcovid.herokuapp.com/**     
 Runs on Dart, Python, HTML, CSS and JavaScript  
+Tech Stack used: Flutter, MongoDB, Flask
 
-## Meet the team:
+## Meet the team: Peace_Penguins (Theme: Social Impact)
 Avinash - https://github.com/avinash-vk  
 Sanskriti - https://github.com/sanskritip  
 Venkat - https://github.com/Venkatavaradan-R  
@@ -24,9 +25,18 @@ The CMA is a mobile applccation to be downloaded by regular citizens. Using this
 safety precautions and notifications. Users are also shown a map of prior cases and regions of high people concentration to avoid.
 If a citizen is feeling symptoms or has come in contact with a positive tested patient, they can request a checkup directly from the application.  
 
+## Demo Links:  
+* Effort Management Dashboard: http://combatcovid.herokuapp.com/  
+* Demo of Apps Working Together: https://www.youtube.com/watch?v=3LwioGyqC5U  
+* Quarantine Management Application Demo: https://www.youtube.com/watch?v=jrIny_79h9M&t=1s  
+* Effort Management Dashboard Demo: https://www.youtube.com/watch?v=icGMVfdH27M&t=1s  
+* Effort Management Mobile Application Demo: https://www.youtube.com/watch?v=fr9Ywrnntr8  
+* Citizen Management Application Demo: https://www.youtube.com/watch?v=5Tqprt7-Mis&t=3s  
+* Link to Android Applications: https://drive.google.com/drive/folders/1QmAJedbKEPpvfUOPeQEBHeCsbjSZhVjU  
+
 ## How to use:
-* The QMA, EMA and CMA android applications can be downloaded from the APK folder  
-* The EMA online dashboard can be viewed at https://combat-covid.azurewebsites.net/ 
+* The QMA, EMA and CMA Android applications can be downloaded from the above link  
+* The EMA online dashboard can be viewed at http://combatcovid.herokuapp.com/ 
 
 #Download the apks from 
 * https://drive.google.com/drive/folders/1_AqTr-dZFQWj-Ocaym2lKFBsBWjUDeKb?usp=sharing
@@ -43,3 +53,5 @@ Microsoft Azure was an integral part of this project. The various Azure services
 * Azure Cognitive Services for face verification
 * Azure Maps for map integration
 * MongoDB Atlas hosted on Azure for database
+
+##### This was created for the Mishmash 2020 and Goverment of Jharkhand Covid-19 Hackathon
